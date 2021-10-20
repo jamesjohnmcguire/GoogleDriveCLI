@@ -1,0 +1,53 @@
+Google Cloud SDK Notes
+	google developer console command line
+	https://cloud.google.com/sdk/docs/cheatsheet
+	gcloud iam service-accounts list
+	create google service account command line
+	gcloud iam service-accounts create some-account-name --display-name="My Service Account"
+	https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/create
+	https://cloud.google.com/sdk/docs/scripting-gcloud
+	review useApplicationDefaultCredentials
+	Authenticating as a service account	https://cloud.google.com/docs/authentication/production
+	google drive attach service accounts to resource
+		https://cloud.google.com/iam/docs/service-accounts-actas
+	gcloud config configurations list
+		NAME            IS_ACTIVE  ACCOUNT                     PROJECT               COMPUTE_DEFAULT_ZONE  COMPUTE_DEFAULT_REGION
+		default         False      jamesjohnmcguire@gmail.com  my-test-project-1169
+		gcloud-initial  True       jahmic@gmail.com            jahmicdriveapi
+	https://console.cloud.google.com/apis/dashboard
+	ID
+		No organization	0
+			another-test-abba	another-test-abba
+			DigitalZenWorks	digitalzenworks-210006
+			Gawa	gawa-145013
+			GawaProject	gawaproject-1a467
+			GoogleDriveLibrary	avian-sunlight-270307
+			Inferret Temporary	inferret-temporary
+			LotusNotesSync	daring-fiber-679
+			Quickstart	quickstart-1583141933850
+			Test FireBase Project	test-firebase-project-edf08
+	gcloud config configurations list
+		NAME            IS_ACTIVE  ACCOUNT                     PROJECT               COMPUTE_DEFAULT_ZONE  COMPUTE_DEFAULT_REGION
+		default         False      jamesjohnmcguire@gmail.com  my-test-project-1169
+		gcloud-initial  False      jahmic@gmail.com            jahmicdriveapi
+		mr-soul-man     True       mrsoulman3@gmail.com        noted-cider-314614
+	gcloud iam service-accounts list
+		DISPLAY NAME          EMAIL                                                            DISABLED
+		Mr Soul Man GCloud    mrsoulmangloud@noted-cider-314614.iam.gserviceaccount.com        False
+		MrSoulManGoogleDrive  mrsoulmangoogledrive@noted-cider-314614.iam.gserviceaccount.com  False
+	Create Service Account and download keys
+		gcloud iam service-accounts create mrsoulmangloud --display-name="Mr Soul Man GCloud"
+		Usage: gcloud iam service-accounts keys create OUTPUT-FILE --iam-account=IAM_ACCOUNT [optional flags] optional flags may be  --help | --key-file-type
+		gcloud iam service-accounts keys create MrSoulManGCloud.json --iam-account="Mr Soul Man GCloud"
+		It should be either a numeric string representing the unique_id or an email of the form: my-iam-account@somedomain.com or my-iam-account@PROJECT_ID.iam.gserviceaccount.com
+		gcloud iam service-accounts keys create MrSoulManGCloud.json --iam-account=mrsoulmangloud@noted-cider-314614.iam.gserviceaccount.com
+		gcloud iam service-accounts keys create --help
+		https://cloud.google.com/iam/docs/creating-managing-service-account-keys
+	configurations 
+		https://stackoverflow.com/questions/35744901/how-to-change-the-active-configuration-profile-in-gcloud
+		https://medium.com/google-cloud/how-to-use-multiple-accounts-with-gcloud-848fdb53a39a
+	google login command line
+		https://cloud.google.com/sdk/gcloud/reference/auth/login
+	C:\Users\JamesMc\AppData\Roaming\gcloud
+Alternatives
+	https://github.com/prasmussen/gdrive
