@@ -3,8 +3,8 @@ Google Cloud SDK Notes
 	https://cloud.google.com/sdk/docs/cheatsheet
 	gcloud iam service-accounts list
 	create google service account command line
-	gcloud iam service-accounts create some-account-name --display-name="My Service Account"
-	https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/create
+		gcloud iam service-accounts create some-account-name --display-name="My Service Account"
+		https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/create
 	https://cloud.google.com/sdk/docs/scripting-gcloud
 	review useApplicationDefaultCredentials
 	Authenticating as a service account	https://cloud.google.com/docs/authentication/production
