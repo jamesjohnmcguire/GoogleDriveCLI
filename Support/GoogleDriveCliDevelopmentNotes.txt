@@ -18,7 +18,9 @@ Google Cloud SDK Notes
 	ID
 		No organization	0
 			another-test-abba	another-test-abba
-			DigitalZenWorks	digitalzenworks-210006
+			DigitalZenWorks
+			
+			igitalzenworks-210006
 			Gawa	gawa-145013
 			GawaProject	gawaproject-1a467
 			GoogleDriveLibrary	avian-sunlight-270307
