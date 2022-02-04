@@ -75,3 +75,16 @@ gcloud iam service-accounts keys create MrSoulManGCloud.json --iam-account="Jame
 gcloud iam service-accounts keys create JamesSanGCloud.json --iam-account=jamessan-gcloud
 
 gcloud iam service-accounts keys create JamesSanGCloud.json --iam-account=jamessan-gcloud@jamessan-driveapi.iam.gserviceaccount.com
+
+GoogleDriveCLI
+	Improve build.cmd with composer install and md LogFiles
+	GoogleDriveCLI	list owner as well
+	GoogleDriveCLI	paths to long?	ERROR: Can not open output file : The filename, directory name, or volume label syntax is incorrect. : vendor/composer/0545aeab\googleapis-google-api-php-client-services-ea99097\src\ServiceNetworking\Resource\ServicesProjectsServicenetworkingGlobalNetworksPeeredDnsDomains.php
+
+	each new service account
+		enable drive api
+		share folder with email address
+
+	Credentials file missing
+	file_get_contents(GoogleDriveCli/GoogleDriveServiceAccount.json): No such file or directory in GoogleDriveCli\GoogleDrive.php on line 580
+	Trying to get property 'about' of non-object in GoogleDriveCli\GoogleDrive.php on line 50
