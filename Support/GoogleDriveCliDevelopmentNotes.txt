@@ -26,11 +26,6 @@ Google Cloud SDK Notes
 			LotusNotesSync	daring-fiber-679
 			Quickstart	quickstart-1583141933850
 			Test FireBase Project	test-firebase-project-edf08
-	gcloud config configurations list
-		NAME            IS_ACTIVE  ACCOUNT                     PROJECT               COMPUTE_DEFAULT_ZONE  COMPUTE_DEFAULT_REGION
-		default         False      jamesjohnmcguire@gmail.com  my-test-project-1169
-		gcloud-initial  False      jahmic@gmail.com            jahmicdriveapi
-		mr-soul-man     True       mrsoulman3@gmail.com        noted-cider-314614
 	Service Accounts
 		gcloud iam service-accounts list
 		create google service account command line
@@ -59,9 +54,18 @@ Alternatives
 
 gcloud auth login
 gcloud config configurations create config-name
-gcloud config set project  jamessan-driveapi
+gcloud config set project jamessan-driveapi
 gcloud config set account my-account@example.com
 gcloud config set name jamessan-gcloud
+
+*******
+To add another gmail account to interact with gcloud use
+	gcloud auth login
+and choose the gmail account through the web interface
+
+Using
+	gcloud auth list
+Will now show that account among others
 
 
 gcloud iam service-accounts list
@@ -84,7 +88,36 @@ GoogleDriveCLI
 	each new service account
 		enable drive api
 		share folder with email address
+Tasks
+	Finished
+		Credentials file missing
+		file_get_contents(GoogleDriveCli/GoogleDriveServiceAccount.json): No such file or directory in GoogleDriveCli\GoogleDrive.php on line 580
+		Trying to get property 'about' of non-object in GoogleDriveCli\GoogleDrive.php on line 50
+Creating a New Service Account
+	1. Login into gcloud with the main gmail account
+		gcloud auth login
 
-	Credentials file missing
-	file_get_contents(GoogleDriveCli/GoogleDriveServiceAccount.json): No such file or directory in GoogleDriveCli\GoogleDrive.php on line 580
-	Trying to get property 'about' of non-object in GoogleDriveCli\GoogleDrive.php on line 50
+			Choose the gmail account through the web interface.  Afterwards, you can use:
+		gcloud auth list
+			to show that account among others
+
+	2. Create gcloud configuration
+		gcloud config configurations create <account-name>-config
+
+	3. Set configuration properties
+		gcloud config set account digitalzenworks@gmail.com
+		gcloud config set project digitalzenworks-drive
+
+			If you haven't created a project yet, this will give a warning
+
+	4. Create project
+		gcloud projects create digitalzenworks-drive --name="DigitalZenWorks Drive Project" --labels=type=drive
+
+			If this is for a gmail account that has yet to interact with gcloud, you might need to go the console over the web and agree to the terms of service
+
+	5. create service account
+		gcloud iam service-accounts create digitalzenworks-service --display-name="DigitalZenWorks Service Account
+
+	6. download keys
+		gcloud iam service-accounts keys create DigitalZenWorksService.json --iam-account=digitalzenworks-service@digitalzenworks-drive.iam.gserviceaccount.com
+			The key file is now located at the current directory.
