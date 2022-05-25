@@ -121,3 +121,6 @@ Creating a New Service Account
 	6. download keys
 		gcloud iam service-accounts keys create DigitalZenWorksService.json --iam-account=digitalzenworks-service@digitalzenworks-drive.iam.gserviceaccount.com
 			The key file is now located at the current directory.
+Google Drive Cli
+	Cloud.google.com
+		https://console.cloud.google.com/welcome?project=avian-sunlight-270307&cloudshell=true
