@@ -124,3 +124,41 @@ Creating a New Service Account
 Google Drive Cli
 	Cloud.google.com
 		https://console.cloud.google.com/welcome?project=avian-sunlight-270307&cloudshell=true
+Google Authorize
+	"4/0AX4XfWhxf79O4Ujef-NmDmD3-cwavmHM9X1G2Mon-YeXnhc6eOgc8SDqVc4cdDJOUTU9bA"
+	"https://www.googleapis.com/auth/drive"
+
+	https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=788901058192-p04eeu7f80pk0clpp8nveuuchp928p50.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Ftest2.php&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&approval_prompt=auto
+
+	option 1
+		$auth = new GoogleAuthorization();
+		$auth->Authorize(Mode::Token, 'token.json');
+	option 2
+		$auth = new GoogleAuthorization();
+		$auth->TokenFilePath = 'token.json';
+		$auth->Authorize(Mode::Token);
+	option 3
+		$result = GoogleAuthorization::Authorize(Mode::Token, null, null, 'token.json');
+
+	https://googleapis.github.io/google-api-php-client/main/Google_Client.html
+	https://github.com/googleapis/google-api-php-client/blob/main/docs/auth.md
+
+	https://developers.google.com/drive/api/quickstart/php
+
+	php -S localhost:8000 -t examples/
+
+	OAuth Redirect Example	https://github.com/googleapis/google-api-php-client/blob/main/examples/simple-file-upload.php
+
+	https://github.com/googleapis/google-api-php-client
+
+	google api oauth "command line" php
+
+	Exception has occurred. Fatal error: Default value for property of type string may not be null. Use the nullable type ?string to allow null default value
+
+	http://localhost/?code=4/0AX4XfWiHFTHcuLdM4o5lzJjDoB1g8fX9SH5SQAlN730cNUdX0CKFlxWK0D7A1A2XXR6Nlw&scope=https://www.googleapis.com/auth/drive%20https://www.googleapis.com/auth/drive.file
+
+	http://localhost/?code=4/0AX4XfWjBRYsS4E04mCkHq8pzocg0aRhvZup73W3QotmPuEWN6Ri-_XLPps0b8lrjZM4nJQ&scope=https://www.googleapis.com/auth/drive%20https://www.googleapis.com/auth/drive.file
+
+	http://localhost/?code=4/0AX4XfWh8h4RsKErKYdDsx2Y8dEvsLaTjQsi5CivJKSK4sQABzrk96HGrC7-EfIzWMNQ84A&scope=https://www.googleapis.com/auth/drive%20https://www.googleapis.com/auth/drive.file
+
+	https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=offline&client_id=1088095479891-fnnid9dmubn3lrdo8cqfgshph7ef4uig.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&prompt=select_account%20consent
