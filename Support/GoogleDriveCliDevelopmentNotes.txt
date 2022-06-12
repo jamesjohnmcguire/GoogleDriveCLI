@@ -162,3 +162,17 @@ Google Authorize
 	http://localhost/?code=4/0AX4XfWh8h4RsKErKYdDsx2Y8dEvsLaTjQsi5CivJKSK4sQABzrk96HGrC7-EfIzWMNQ84A&scope=https://www.googleapis.com/auth/drive%20https://www.googleapis.com/auth/drive.file
 
 	https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=offline&client_id=1088095479891-fnnid9dmubn3lrdo8cqfgshph7ef4uig.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&prompt=select_account%20consent
+Google Drive Console
+	Authenticating as a service account	https://cloud.google.com/docs/authentication/production
+	https://github.com/sushihangover/CursesSharp
+	https://docs.microsoft.com/en-us/dotnet/api/system.console?redirectedfrom=MSDN&view=net-6.0#methods
+	https://stackoverflow.com/questions/31570411/how-do-i-create-a-static-header-in-the-console-c
+	c# console header
+Google Authorize
+	***** https://developers.google.com/resources/api-libraries/documentation/drive/v3/php/latest/class-Google_Service_Drive.html
+
+		Google Accounts
+			https://stackoverflow.com/questions/21201499/breakpoint-on-submit-chrome-developer-tool
+
+			CURL ONload
+	
