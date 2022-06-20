@@ -146,6 +146,7 @@ Google Authorize
 	https://developers.google.com/drive/api/quickstart/php
 
 	php -S localhost:8000 -t examples/
+	php -S localhost:8000 test.php
 
 	OAuth Redirect Example	https://github.com/googleapis/google-api-php-client/blob/main/examples/simple-file-upload.php
 
@@ -157,10 +158,6 @@ Google Authorize
 
 	http://localhost/?code=4/0AX4XfWiHFTHcuLdM4o5lzJjDoB1g8fX9SH5SQAlN730cNUdX0CKFlxWK0D7A1A2XXR6Nlw&scope=https://www.googleapis.com/auth/drive%20https://www.googleapis.com/auth/drive.file
 
-	http://localhost/?code=4/0AX4XfWjBRYsS4E04mCkHq8pzocg0aRhvZup73W3QotmPuEWN6Ri-_XLPps0b8lrjZM4nJQ&scope=https://www.googleapis.com/auth/drive%20https://www.googleapis.com/auth/drive.file
-
-	http://localhost/?code=4/0AX4XfWh8h4RsKErKYdDsx2Y8dEvsLaTjQsi5CivJKSK4sQABzrk96HGrC7-EfIzWMNQ84A&scope=https://www.googleapis.com/auth/drive%20https://www.googleapis.com/auth/drive.file
-
 	https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=offline&client_id=1088095479891-fnnid9dmubn3lrdo8cqfgshph7ef4uig.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&prompt=select_account%20consent
 Google Drive Console
 	Authenticating as a service account	https://cloud.google.com/docs/authentication/production
@@ -171,8 +168,14 @@ Google Drive Console
 Google Authorize
 	***** https://developers.google.com/resources/api-libraries/documentation/drive/v3/php/latest/class-Google_Service_Drive.html
 
-		Google Accounts
-			https://stackoverflow.com/questions/21201499/breakpoint-on-submit-chrome-developer-tool
+Google Accounts
+	https://stackoverflow.com/questions/21201499/breakpoint-on-submit-chrome-developer-tool
 
-			CURL ONload
-	
+	CURL ONload
+Google Authorization
+	https://googleapis.github.io/google-api-php-client/v2.0.0/doc-index.html
+	http://localhost/?code=4/0AX4XfWg1WvTRE5oLgxyBljja3wBuksOT0xgoFjDfQZe0nWCizw4DXU1C75bVj_pmcS-qPg&scope=https://www.googleapis.com/auth/drive
+	https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=offline&client_id=1088095479891-fnnid9dmubn3lrdo8cqfgshph7ef4uig.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&prompt=select_account%20consent
+
+	https://github.com/googleworkspace/php-samples
+	https://github.com/google/oauth2l
