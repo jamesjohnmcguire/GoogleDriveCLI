@@ -179,3 +179,11 @@ Google Authorization
 
 	https://github.com/googleworkspace/php-samples
 	https://github.com/google/oauth2l
+Google Authorization
+	SET GOOGLE_APPLICATION_CREDENTIALS=C:\Users\JamesMc\Data\Clients\DigitalZenWorks\Libraries\PHP\GoogleApiAuthorization\ServiceAccount.json
+
+	No prompt parameter for tokens?
+	No output option?
+	Doubled up functionality
+	Check all type hinting
+	Namespace and class names?
