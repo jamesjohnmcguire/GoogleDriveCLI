@@ -187,3 +187,29 @@ Google Authorization
 	Doubled up functionality
 	Check all type hinting
 	Namespace and class names?
+
+	Key Files
+		vendor\google\apiclient-services\src\Google\Service\Drive\FileList.php
+		vendor\google\apiclient\src\Google\Collection.php
+Resources
+	Google Drive
+		https://developers.google.com/drive/api/v3/about-auth
+		https://developers.google.com/gdata/articles/debugging_client_libs
+
+		GoogleDriveCli\vendor\google\apiclient\src\Client.php
+
+		class Google_Service_Drive extends Google_Service
+			public function __construct(Google_Client $client, $rootUrl = null)
+			GoogleDriveCli\vendor\google\apiclient-services\src\Google\Service\Drive.php
+		class Google_Service_Drive_Drive extends Google_Model
+			GoogleDriveCli\vendor\google\apiclient-services\src\Google\Service\Drive\Drive.php
+		class Google_Service_Drive_About extends Google_Collection
+			GoogleDriveCli\vendor\google\apiclient-services\src\Google\Service\Drive\About.php
+		class Google_Collection extends \Google\Collection {}
+			GoogleDriveCli\vendor\google\apiclient\src\aliases.php
+
+		https://developers.google.com/resources/api-libraries/documentation/drive/v3/php/latest/class-Google_Service_Drive_About.html
+
+		google drive php example
+			https://stackoverflow.com/questions/16153539/list-all-top-level-folders-in-google-drive-api
+		https://stackoverflow.com/questions/11304767/how-to-get-the-owner-of-file-using-google-drive-api
