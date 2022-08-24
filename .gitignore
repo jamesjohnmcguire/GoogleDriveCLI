@@ -1,6 +1,6 @@
-/SourceCode/LogFiles
-/SourceCode/vendor
+/SourceCode/GoogleDriveCliPhp/LogFiles
+/SourceCode/GoogleDriveCliPhp/vendor
 
-/SourceCode/credentials.json
-/SourceCode/GoogleDriveServiceAccount.json
-/SourceCode/tokens.json
+/SourceCode/GoogleDriveCliPhp/credentials.json
+/SourceCode/GoogleDriveCliPhp/GoogleDriveServiceAccount.json
+/SourceCode/GoogleDriveCliPhp/tokens.json
