@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDriveCli", "GoogleDriveCli\GoogleDriveCli.csproj", "{BEBC0B1C-ED19-4C6F-B079-32057F51ABA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDriveCliLibrary", "..\GoogleDriveCliLibrary\GoogleDriveCliLibrary.csproj", "{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleApiAuthorizer", "..\..\..\GoogleApiAuthorizer\Csharp\GoogleApiAuthorizer\GoogleApiAuthorizer.csproj", "{4AF50691-6DBF-4463-8A04-20D7C047FB31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BEBC0B1C-ED19-4C6F-B079-32057F51ABA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBC0B1C-ED19-4C6F-B079-32057F51ABA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEBC0B1C-ED19-4C6F-B079-32057F51ABA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
