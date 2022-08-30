@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDriveCli", "GoogleDriveCli\GoogleDriveCli.csproj", "{BEBC0B1C-ED19-4C6F-B079-32057F51ABA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleDriveCli", "GoogleDriveCli\GoogleDriveCli.csproj", "{BEBC0B1C-ED19-4C6F-B079-32057F51ABA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleDriveCliLibrary", "..\GoogleDriveCliLibrary\GoogleDriveCliLibrary.csproj", "{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleDriveCliLibrary", "GoogleDriveCliLibrary\GoogleDriveCliLibrary.csproj", "{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleApiAuthorizer", "..\..\..\GoogleApiAuthorizer\Csharp\GoogleApiAuthorizer\GoogleApiAuthorizer.csproj", "{4AF50691-6DBF-4463-8A04-20D7C047FB31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleApiAuthorizer", "..\..\GoogleApiAuthorizer\GoogleApiAuthorizationNet\SourceCode\GoogleApiAuthorizer\GoogleApiAuthorizer.csproj", "{A1C76FB0-4487-4B56-A84A-71A07F96C2C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9FA06CE-839E-412F-BFBD-C13A9F999B0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AF50691-6DBF-4463-8A04-20D7C047FB31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C76FB0-4487-4B56-A84A-71A07F96C2C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C76FB0-4487-4B56-A84A-71A07F96C2C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C76FB0-4487-4B56-A84A-71A07F96C2C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C76FB0-4487-4B56-A84A-71A07F96C2C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
