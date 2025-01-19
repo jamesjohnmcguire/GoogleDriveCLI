@@ -7,6 +7,8 @@
 require_once "libraries/common/debug.php";
 require_once "GoogleDrive.php";
 
+ini_set('memory_limit', '2048M');
+
 $debugLevel = Debug::DEBUG;
 $logFile = __DIR__ . '/LogFiles/GoogleDrive.log';
 $debugger = new Debug($debugLevel, $logFile);
