@@ -6,13 +6,6 @@ require_once "libraries/common/debug.php";
 use DigitalZenWorks\GoogleApiAuthorization\Authorizer;
 use DigitalZenWorks\GoogleApiAuthorization\Mode;
 
-defined('CREDENTIALS_FILE') or define('CREDENTIALS_FILE', 'ProjectCredentials.json');
-defined('SHARED_FOLDER') or
-	define('SHARED_FOLDER', '1Mnztj-6iGYfnI0EkXCV-y7cizfekg5X9');
-defined('SERVICE_ACCOUNT_FILE') or
-	define ('SERVICE_ACCOUNT_FILE', 'GoogleDriveServiceAccount.json');
-defined('TOKEN_FILE') or define('TOKEN_FILE', 'Tokens.json');
-
 class GoogleDrive
 {
 	protected $debug = null;
