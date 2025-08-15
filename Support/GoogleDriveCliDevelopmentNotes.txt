@@ -1,85 +1,19 @@
-Google Cloud SDK Notes
-	google developer console command line
-	https://cloud.google.com/sdk/docs/cheatsheet
-	https://cloud.google.com/sdk/docs/scripting-gcloud
-	review useApplicationDefaultCredentials
-	Authenticating as a service account	https://cloud.google.com/docs/authentication/production
-	google drive attach service accounts to resource
-		https://cloud.google.com/iam/docs/service-accounts-actas
-	gcloud config configurations list
-		NAME            IS_ACTIVE  ACCOUNT                     PROJECT               COMPUTE_DEFAULT_ZONE  COMPUTE_DEFAULT_REGION
-		config-name     True       james.san@gmail.com         jamessan-driveapi
-		default         False      jamesjohnmcguire@gmail.com  my-test-project-1169
-		gcloud-initial  False      jahmic@gmail.com            jahmicdriveapi
-		mr-soul-man     False      james.san@gmail.com         noted-cider-314614
-	https://console.cloud.google.com/apis/dashboard
-	ID
-		No organization	0
-			another-test-abba	another-test-abba
-			DigitalZenWorks
-			
-			igitalzenworks-210006
-			Gawa	gawa-145013
-			GawaProject	gawaproject-1a467
-			GoogleDriveLibrary	avian-sunlight-270307
-			Inferret Temporary	inferret-temporary
-			LotusNotesSync	daring-fiber-679
-			Quickstart	quickstart-1583141933850
-			Test FireBase Project	test-firebase-project-edf08
-	Service Accounts
-		gcloud iam service-accounts list
-		create google service account command line
-			gcloud iam service-accounts create some-account-name --display-name="My Service Account"
-			https://cloud.google.com/sdk/gcloud/reference/iam/service-accounts/create
-		gcloud iam service-accounts list
-			DISPLAY NAME          EMAIL                                                            DISABLED
-			Mr Soul Man GCloud    mrsoulmangloud@noted-cider-314614.iam.gserviceaccount.com        False
-			MrSoulManGoogleDrive  mrsoulmangoogledrive@noted-cider-314614.iam.gserviceaccount.com  False
-		Create Service Account and download keys
-			gcloud iam service-accounts create mrsoulmangloud --display-name="Mr Soul Man GCloud"
-			Usage: gcloud iam service-accounts keys create OUTPUT-FILE --iam-account=IAM_ACCOUNT [optional flags] optional flags may be  --help | --key-file-type
-			gcloud iam service-accounts keys create MrSoulManGCloud.json --iam-account="Mr Soul Man GCloud"
-			It should be either a numeric string representing the unique_id or an email of the form: my-iam-account@somedomain.com or my-iam-account@PROJECT_ID.iam.gserviceaccount.com
-			gcloud iam service-accounts keys create MrSoulManGCloud.json --iam-account=mrsoulmangloud@noted-cider-314614.iam.gserviceaccount.com
-			gcloud iam service-accounts keys create --help
-			https://cloud.google.com/iam/docs/creating-managing-service-account-keys
+Tasks
+	Consolidate Notes in files:
+		GoogleServices\SourceCode\GoogleDriveCLI\Support\GoogleDriveCliDevelopmentNotes.txt
+		C:\Users\JamesMc\AppData\Roaming\gcloud
+		Process\Process.txt:
+		Process\TechNotes.txt
+	Finished
+		Credentials file missing
+		file_get_contents(GoogleDriveCli/GoogleDriveServiceAccount.json): No such file or directory in GoogleDriveCli\GoogleDrive.php on line 580
+		Trying to get property 'about' of non-object in GoogleDriveCli\GoogleDrive.php on line 50
 	configurations
 		https://stackoverflow.com/questions/35744901/how-to-change-the-active-configuration-profile-in-gcloud
 		https://medium.com/google-cloud/how-to-use-multiple-accounts-with-gcloud-848fdb53a39a
-	google login command line
-		https://cloud.google.com/sdk/gcloud/reference/auth/login
 	C:\Users\JamesMc\AppData\Roaming\gcloud
 Alternatives
 	https://github.com/prasmussen/gdrive
-
-gcloud auth login
-gcloud config configurations create config-name
-gcloud config set project jamessan-driveapi
-gcloud config set account my-account@example.com
-gcloud config set name jamessan-gcloud
-
-*******
-To add another gmail account to interact with gcloud use
-	gcloud auth login
-and choose the gmail account through the web interface
-
-Using
-	gcloud auth list
-Will now show that account among others
-
-
-gcloud iam service-accounts list
-ERROR: (gcloud.iam.service-accounts.list) Projects instance [jamessan-driveapi] not found: Resource projects/jamessan-driveapi could not be found.
-
-gcloud iam service-accounts list ERROR: (gcloud.iam.service-accounts.list) Projects instance [] not found: Resource projects/ could not be found.
-
-gcloud iam service-accounts create jamessan-gcloud --display-name="James San GCloud"
-
-gcloud iam service-accounts keys create MrSoulManGCloud.json --iam-account="James San GCloud"
-gcloud iam service-accounts keys create JamesSanGCloud.json --iam-account=jamessan-gcloud
-
-gcloud iam service-accounts keys create JamesSanGCloud.json --iam-account=jamessan-gcloud@jamessan-driveapi.iam.gserviceaccount.com
-
 GoogleDriveCLI
 	Improve build.cmd with composer install and md LogFiles
 	GoogleDriveCLI	list owner as well
@@ -88,11 +22,6 @@ GoogleDriveCLI
 	each new service account
 		enable drive api
 		share folder with email address
-Tasks
-	Finished
-		Credentials file missing
-		file_get_contents(GoogleDriveCli/GoogleDriveServiceAccount.json): No such file or directory in GoogleDriveCli\GoogleDrive.php on line 580
-		Trying to get property 'about' of non-object in GoogleDriveCli\GoogleDrive.php on line 50
 Creating a New Service Account
 	1. Login into gcloud with the main gmail account
 		gcloud auth login
