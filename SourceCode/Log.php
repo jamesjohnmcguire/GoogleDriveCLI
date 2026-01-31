@@ -37,7 +37,7 @@ class Log
 	 */
 	public static function GetLog(string $name) : object
 	{
-		$logFile = __DIR__ . '/Logs/' . $name . '.log';
+		$logFile = __DIR__ . '/LogFiles/' . $name . '.log';
 
 		$logFormat =
 			"[%datetime%] %level_name%: %message% %context% %extra%\n";
