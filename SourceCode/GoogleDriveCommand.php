@@ -4,6 +4,8 @@
 // GoogleDriveCommand deleteall
 // GoogleDriveCommand delete 1IcurHhUiafHbqw8qfw1UEGGLrGGFzDqH
 
+declare(strict_types=1);
+
 require_once "libraries/debug.php";
 require_once "GoogleDrive.php";
 

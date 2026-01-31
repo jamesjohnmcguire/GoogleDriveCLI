@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 if (PHP_SAPI == 'cli')
 {
 	defined('EOL') OR define('EOL', PHP_EOL);
