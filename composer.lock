@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6a4383f75ca7b264a03d1b50d1b1fe4",
+    "content-hash": "1f2e311f15f06de0b0959f54d3be9476",
     "packages": [
         {
             "name": "digitalzenworks/google-api-authorization",

@@ -19,8 +19,9 @@
 	},
 	"require": {
 		"php": "^7.4 || ^8.0",
+		"digitalzenworks/google-api-authorization": "^1.0",
 		"google/apiclient": "^2.11",
-		"digitalzenworks/google-api-authorization": "^1.0"
+		"monolog/monolog": "^3.10"
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "*",
