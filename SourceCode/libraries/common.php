@@ -18,7 +18,7 @@ class Common
 	 * @param mixed $current The current content to compare
 	 * @return bool True if contents are different, false if same
 	 */
-	public static function AreContentsSame(&$previous, $current)
+	public static function AreContentsSame(mixed &$previous, mixed $current): bool
 	{
 		$different = false;
 
@@ -52,7 +52,7 @@ class Common
 	 * @param string $date Japanese date string (e.g., "2020年10月25日")
 	 * @return string ISO formatted date string (Y-m-d)
 	 */
-	public static function ConvertJapaneseDate($date)
+	public static function ConvertJapaneseDate(string $date): string
 	{
 		$date = str_replace('年', '-', $date);
 		$date = str_replace('月', '-', $date);
@@ -69,7 +69,7 @@ class Common
 	 *
 	 * @return void
 	 */
-	public static function FlushBuffers()
+	public static function FlushBuffers(): void
 	{
 		if (ob_get_level() > 0)
 		{
@@ -83,7 +83,7 @@ class Common
 	 *
 	 * @return string Formatted time string (Y-m-d H:i:s:u) or 'none' on failure
 	 */
-	public static function GetNowMicroTime()
+	public static function GetNowMicroTime(): string
 	{
 		$time = 'none';
 		$timezone = new DateTimeZone('Asia/Tokyo');
@@ -104,7 +104,7 @@ class Common
 	 *
 	 * @return string Formatted time string (Y-m-d H:i:s:u) or empty string on failure
 	 */
-	public static function GetNowTime()
+	public static function GetNowTime(): string
 	{
 		$timezone = new DateTimeZone('Asia/Tokyo');
 		$time = '';
@@ -126,8 +126,8 @@ class Common
 	 * @param string|null $endTime Optional end time for range check (HH:MM format)
 	 * @return bool True if time is valid (and within range if specified), false otherwise
 	 */
-	public static function IsValidTime($time, $beginTime = null,
-		$endTime = null)
+	public static function IsValidTime(string $time, ?string $beginTime = null,
+		?string $endTime = null): bool
 	{
 		$isTime = false;
 		$time = trim($time);
@@ -163,7 +163,7 @@ class Common
 	 *
 	 * @return void
 	 */
-	public static function SetDebugMode()
+	public static function SetDebugMode(): void
 	{
 		error_reporting(E_ALL);
 		ini_set("display_errors", 1);

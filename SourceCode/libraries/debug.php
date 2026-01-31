@@ -17,7 +17,7 @@ defined('E_WARNING') OR define('E_WARNING', 8);
  * @param bool $htmlcode Whether to wrap output in HTML pre/code/xmp tags
  * @return void
  */
-function DebugDump($name, $variable, $htmlcode = false)
+function DebugDump(string $name, mixed $variable, bool $htmlcode = false): void
 {
 	global $debug;
 
@@ -49,7 +49,7 @@ function DebugDump($name, $variable, $htmlcode = false)
  * @param mixed|null $value Optional value to display alongside the variable name
  * @return void
  */
-function DebugEcho($variable, $value = null)
+function DebugEcho(string $variable, mixed $value = null): void
 {
 	global $debug;
 
@@ -72,7 +72,7 @@ function DebugEcho($variable, $value = null)
  * @param mixed $Statement The statement to print
  * @return void
  */
-function DebugPrint( $Statement )
+function DebugPrint(mixed $Statement): void
 {
 	global $g_Debug;
 
@@ -90,7 +90,7 @@ function DebugPrint( $Statement )
  * @param mixed|null $value Optional value to display alongside the variable name
  * @return void
  */
-function DebugVar($variable, $value = null)
+function DebugVar(string $variable, mixed $value = null): void
 {
 	global $debug;
 
@@ -112,7 +112,7 @@ function DebugVar($variable, $value = null)
  *
  * @return void
  */
-function SetErrorReportingOn()
+function SetErrorReportingOn(): void
 {
 	error_reporting(E_ALL);
 	ini_set("display_errors", 1);
@@ -125,7 +125,7 @@ function SetErrorReportingOn()
  * @param int $level Maximum recursion level (default: 5)
  * @return string The formatted output string
  */
-function print_r_level($data, $level = 5)
+function print_r_level(mixed $data, int $level = 5): string
 {
 	static $innerLevel = 1;
 
@@ -242,8 +242,8 @@ function print_r_level($data, $level = 5)
  *
  * @return string|void Returns string when called recursively ($i > 0), void when at top level (echoes output)
  */
-function var_debug($variable, $strlen=100, $width=50, $depth=10, $i=0,
-	&$objects = array())
+function var_debug(mixed $variable, int $strlen=100, int $width=50, int $depth=10, int $i=0,
+	array &$objects = array()): ?string
 {
 	$search = array("\0", "\a", "\b", "\f", "\n", "\r", "\t", "\v");
 	$replace = array('\0', '\a', '\b', '\f', '\n', '\r', '\t', '\v');
@@ -352,7 +352,7 @@ class Debug
 	 * @param int $level Debug level (default: self::ERROR).
 	 * @param string|null $logFile Path to log file (default: null).
 	 */
-	public function __construct($level = self::ERROR, $logFile = null)
+	public function __construct(int $level = self::ERROR, ?string $logFile = null)
 	{
 		$this->level = $level;
 		$this->logFile = $logFile;
@@ -366,7 +366,7 @@ class Debug
 	 *
 	 * @return void
 	 */
-	public function Dump($level, $object)
+	public function Dump(int $level, mixed $object): void
 	{
 		if ($level <= $this->level)
 		{
@@ -381,7 +381,7 @@ class Debug
 	 *
 	 * @return void
 	 */
-	public static function DumpStatic($object)
+	public static function DumpStatic(mixed $object): void
 	{
 		var_dump($object);
 		echo "<br />" . PHP_EOL;
@@ -396,7 +396,7 @@ class Debug
 	 *
 	 * @return void
 	 */
-	public function DebugExit($level, $message)
+	public function DebugExit(int $level, string $message): void
 	{
 		if ($level <= $this->level)
 		{
@@ -411,7 +411,7 @@ class Debug
 	 *
 	 * @return void
 	 */
-	public function Log($message)
+	public function Log(string $message): void
 	{
 		if (null != $this->logFile)
 		{
@@ -427,7 +427,7 @@ class Debug
 	 *
 	 * @return void
 	 */
-	public static function LogStatic($message, $logFile)
+	public static function LogStatic(string $message, ?string $logFile): void
 	{
 		if (null != $logFile)
 		{
@@ -451,7 +451,7 @@ class Debug
 	 *
 	 * @return void
 	 */
-	public function On($level = E_NOTICE)
+	public function On(int $level = E_NOTICE): void
 	{
 		$this->debug = $level;
 	}
