@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace DigitalZenWorks\GoogleDrive;
+
 include_once 'vendor/autoload.php';
 require_once "libraries/common.php";
 require_once "libraries/debug.php";
@@ -51,7 +53,7 @@ class GoogleDrive
 		{
 			$this->GetCoreSharedParentFolderIdFromFile();
 
-			$this->service = new Google_Service_Drive($this->client);
+			$this->service = new \Google_Service_Drive($this->client);
 		}
 	}
 
@@ -62,7 +64,7 @@ class GoogleDrive
 	 */
 	public function About(): void
 	{
-		$this->debug->Show(Debug::DEBUG, "About begin");
+		$this->debug->Show(\Debug::DEBUG, "About begin");
 
 		if ($this->service === null)
 		{
@@ -101,7 +103,7 @@ class GoogleDrive
 					"$file->id Name $file->name\033[0m\r\n";
 				$this->service->files->delete($file->id);
 			}
-			catch (Exception $exception)
+			catch (\Exception $exception)
 			{
 				$message = $exception->getMessage();
 				echo "\033[31mError: $message\033[0m\r\n";
@@ -124,7 +126,7 @@ class GoogleDrive
 			echo "\033[36mDeleting file with id: $fileId\033[0m\r\n";
 			$this->service->files->delete($fileId);
 		}
-		catch (Exception $exception)
+		catch (\Exception $exception)
 		{
 			$message = $exception->getMessage();
 			echo "\033[31mError: $message\033[0m\r\n";
@@ -154,7 +156,7 @@ class GoogleDrive
 
 			print_r($file);
 		}
-		catch (Exception $exception)
+		catch (\Exception $exception)
 		{
 			$message = $exception->getMessage();
 			echo "\033[31mError: $message\033[0m\r\n";
@@ -172,15 +174,14 @@ class GoogleDrive
 		$files = $this->GetFiles(
 			$parentId, $this->showOnlyFolders, $this->showOnlyRootLevel);
 
-		$this->debug->Show(Debug::DEBUG, "Listing files");
-		$this->debug->Show(Debug::DEBUG, "parent id: $parentId");
-
+		$this->debug->Show(\Debug::DEBUG, "Listing files");
+		$this->debug->Show(\Debug::DEBUG, "parent id: $parentId");
 		echo "\r\n";
 
 		if ($this->showShared === true)
 		{
 			$this->debug->Show(
-				Debug::DEBUG, "Showing files also shared with me");
+				\Debug::DEBUG, "Showing files also shared with me");
 			echo "  ";
 
 			if ($this->showParent == true)
@@ -194,7 +195,7 @@ class GoogleDrive
 		}
 		else
 		{
-			$this->debug->Show(Debug::DEBUG, "Showing files only owned by me");
+			$this->debug->Show(\Debug::DEBUG, "Showing files only owned by me");
 
 			if ($this->showParent == true)
 			{
@@ -264,9 +265,9 @@ class GoogleDrive
 	{
 		if (file_exists($file))
 		{
-			$this->debug->Show(Debug::DEBUG, "Starting file upload of $file");
+			$this->debug->Show(\Debug::DEBUG, "Starting file upload of $file");
 
-			$driveFile = new Google_Service_Drive_DriveFile();
+			$driveFile = new \Google_Service_Drive_DriveFile();
 			$driveFile->name = basename($file);
 
 			$parents = [SHARED_FOLDER];
@@ -279,7 +280,7 @@ class GoogleDrive
 			$chunkSizeBytes = 20 * 1024 * 1024;
 
 			// Create a media file upload to represent our upload process.
-			$media = new Google_Http_MediaFileUpload(
+			$media = new \Google_Http_MediaFileUpload(
 				$this->client,
 				$request,
 				'video/mp4',
@@ -295,7 +296,7 @@ class GoogleDrive
 
 			if ($handle === false)
 			{
-				$this->debug->Show(Debug::ERROR, "Failed to open file: $file");
+				$this->debug->Show(\Debug::ERROR, "Failed to open file: $file");
 			}
 			else
 			{
@@ -306,7 +307,7 @@ class GoogleDrive
 				{
 					$uploadedAmount = $media->getProgress();
 					$bytes =  number_format($uploadedAmount);
-					$this->debug->Show(Debug::DEBUG,
+					$this->debug->Show(\Debug::DEBUG,
 						"Uploaded file chunk: $index - $bytes bytes");
 
 					$chunk = self::GetFileChunk($handle, $chunkSizeBytes);
@@ -317,7 +318,7 @@ class GoogleDrive
 				}
 
 				fclose($handle);
-				$this->debug->Show(Debug::DEBUG, "Upload complete");
+				$this->debug->Show(\Debug::DEBUG, "Upload complete");
 			}
 
 			// The final value of $status will be the data from the API
@@ -327,7 +328,7 @@ class GoogleDrive
 			if ($status !== false)
 			{
 				$result = true;
-				$this->debug->Show(Debug::DEBUG, "Uploaded file success");
+				$this->debug->Show(\Debug::DEBUG, "Uploaded file success");
 			}
 		}
 	}
@@ -455,7 +456,7 @@ class GoogleDrive
 				$files = array_merge($files, $response->files);
 				$pageToken = $response->getNextPageToken();
 			}
-			catch (Exception $exception)
+			catch (\Exception $exception)
 			{
 				$message = $exception->getMessage();
 				echo "Error: $message\r\n";
@@ -495,7 +496,7 @@ class GoogleDrive
 	 */
 	private function TransferOwnership(string $email, object $file): void
 	{
-		$newPermission = new Google_Service_Drive_Permission();
+		$newPermission = new \Google_Service_Drive_Permission();
 		$newPermission->setRole('owner');
 		$newPermission->setType('user');
 		$newPermission->setEmailAddress($email);

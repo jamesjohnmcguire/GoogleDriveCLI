@@ -6,14 +6,16 @@
 
 declare(strict_types=1);
 
+namespace DigitalZenWorks\GoogleDrive;
+
 require_once "libraries/debug.php";
 require_once "GoogleDrive.php";
 
 ini_set('memory_limit', '2048M');
 
-$debugLevel = Debug::DEBUG;
+$debugLevel = \Debug::DEBUG;
 $logFile = __DIR__ . '/LogFiles/GoogleDrive.log';
-$debugger = new Debug($debugLevel, $logFile);
+$debugger = new \Debug($debugLevel, $logFile);
 
 $command = null;
 $data = null;
