@@ -1,7 +1,7 @@
 <?php
 include_once 'vendor/autoload.php';
-require_once "libraries/common/common.php";
-require_once "libraries/common/debug.php";
+require_once "libraries/common.php";
+require_once "libraries/debug.php";
 
 use DigitalZenWorks\GoogleApiAuthorization\Authorizer;
 use DigitalZenWorks\GoogleApiAuthorization\Mode;
@@ -19,8 +19,15 @@ class GoogleDrive
 	private $showParent = false;
 	private $showShared = false;
 
+	/**
+	 * Constructor for GoogleDrive class
+	 *
+	 * @param mixed $debug Debug object instance
+	 * @param array $options Optional configuration options (showOnlyFolders, showOnlyRootLevel, showParent, showShared, serviceAccountFilePath)
+	 * @param string $authorizationType Authorization type (default: 'ServiceAccount')
+	 */
 	public function __construct(
-		$debug, $options = [], $authorizationType = 'ServiceAccount')
+		mixed $debug, array $options = [], string $authorizationType = 'ServiceAccount')
 	{
 		$this->debug = $debug;
 
@@ -46,7 +53,12 @@ class GoogleDrive
 		}
 	}
 
-	public function About()
+	/**
+	 * Retrieves and displays Google Drive storage quota information
+	 *
+	 * @return void
+	 */
+	public function About(): void
 	{
 		$this->debug->Show(Debug::DEBUG, "About begin");
 
@@ -70,7 +82,12 @@ class GoogleDrive
 		}
 	}
 
-	public function DeleteAllFiles()
+	/**
+	 * Deletes all files from Google Drive
+	 *
+	 * @return array Array of file objects that were deleted
+	 */
+	public function DeleteAllFiles(): array
 	{
 		$response = $this->GetFiles(null);
 
@@ -78,7 +95,7 @@ class GoogleDrive
 		{
 			try
 			{
-				echo "\033[36mDeleting id: " . 
+				echo "\033[36mDeleting id: " .
 					"$file->id Name $file->name\033[0m\r\n";
 				$this->service->files->delete($file->id);
 			}
@@ -92,7 +109,13 @@ class GoogleDrive
 		return $response;
 	}
 
-	public function DeleteFile($fileId)
+	/**
+	 * Deletes a specific file from Google Drive by ID
+	 *
+	 * @param string $fileId The ID of the file to delete
+	 * @return void
+	 */
+	public function DeleteFile(string $fileId): void
 	{
 		try
 		{
@@ -106,7 +129,13 @@ class GoogleDrive
 		}
 	}
 
-	public function GetFile($fileId)
+	/**
+	 * Retrieves file information from Google Drive by ID
+	 *
+	 * @param string $fileId The ID of the file to retrieve
+	 * @return void
+	 */
+	public function GetFile(string $fileId): void
 	{
 		try
 		{
@@ -130,7 +159,13 @@ class GoogleDrive
 		}
 	}
 
-	public function ListFiles($parentId = null)
+	/**
+	 * Lists files in Google Drive, optionally filtered by parent folder
+	 *
+	 * @param string|null $parentId Optional parent folder ID to filter files
+	 * @return array Array of file objects
+	 */
+	public function ListFiles(?string $parentId = null): array
 	{
 		$files = $this->GetFiles(
 			$parentId, $this->showOnlyFolders, $this->showOnlyRootLevel);
@@ -217,7 +252,13 @@ class GoogleDrive
 		return $files;
 	}
 
-	public function UploadFile($file)
+	/**
+	 * Uploads a file to Google Drive
+	 *
+	 * @param string $file Path to the file to upload
+	 * @return void
+	 */
+	public function UploadFile(string $file): void
 	{
 		if (file_exists($file))
 		{
@@ -289,7 +330,14 @@ class GoogleDrive
 		}
 	}
 
-	private static function GetFileChunk($handle, $chunkSize)
+	/**
+	 * Reads a chunk of data from a file handle
+	 *
+	 * @param resource $handle File handle to read from
+	 * @param int $chunkSize Size of the chunk to read in bytes
+	 * @return string The file chunk data
+	 */
+	private static function GetFileChunk($handle, int $chunkSize): string
 	{
 		$byteCount = 0;
 		$giantChunk = "";
@@ -298,7 +346,7 @@ class GoogleDrive
 		while ($endOfFile === false)
 		{
 			// fread will never return more than 8192 bytes
-			/// if the stream is read buffered and 
+			/// if the stream is read buffered and
 			// it does not represent a plain file
 			$chunk = fread($handle, 8192);
 			$byteCount += strlen($chunk);
@@ -314,8 +362,16 @@ class GoogleDrive
 		return $giantChunk;
 	}
 
+	/**
+	 * Retrieves files from Google Drive with optional filtering
+	 *
+	 * @param string|null $parentId Optional parent folder ID to filter files
+	 * @param bool $showOnlyFolders Whether to show only folders (default: false)
+	 * @param bool $showOnlyRootLevel Whether to show only root level files (default: false)
+	 * @return array Array of file objects
+	 */
 	private function GetFiles(
-		$parentId, $showOnlyFolders = false, $showOnlyRootLevel = false)
+		?string $parentId, bool $showOnlyFolders = false, bool $showOnlyRootLevel = false): array
 	{
 		// returns empty array
 		// $files = new Google_Service_Drive_FileList($this->client);
@@ -408,7 +464,12 @@ class GoogleDrive
 		return $files;
 	}
 
-	private function GetCoreSharedParentFolderIdFromFile()
+	/**
+	 * Retrieves the core shared parent folder ID from the service account file
+	 *
+	 * @return void
+	 */
+	private function GetCoreSharedParentFolderIdFromFile(): void
 	{
 		if (!empty($this->serviceAccountFilePath)  && file_exists($this->serviceAccountFilePath))
 		{
@@ -423,7 +484,14 @@ class GoogleDrive
 		}
 	}
 
-	private function TransferOwnership($email, $file)
+	/**
+	 * Transfers ownership of a file to another user
+	 *
+	 * @param string $email Email address of the new owner
+	 * @param object $file File object to transfer ownership of
+	 * @return void
+	 */
+	private function TransferOwnership(string $email, object $file): void
 	{
 		$newPermission = new Google_Service_Drive_Permission();
 		$newPermission->setRole('owner');

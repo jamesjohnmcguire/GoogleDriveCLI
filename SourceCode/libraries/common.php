@@ -11,6 +11,13 @@ else
 
 class Common
 {
+	/**
+	 * Checks if the current content is different from the previous content
+	 *
+	 * @param mixed $previous Reference to the previous content (will be updated)
+	 * @param mixed $current The current content to compare
+	 * @return bool True if contents are different, false if same
+	 */
 	public static function AreContentsSame(&$previous, $current)
 	{
 		$different = false;
@@ -39,6 +46,12 @@ class Common
 		return $different;
 	}
 
+	/**
+	 * Converts a Japanese date string to ISO format (Y-m-d)
+	 *
+	 * @param string $date Japanese date string (e.g., "2020年10月25日")
+	 * @return string ISO formatted date string (Y-m-d)
+	 */
 	public static function ConvertJapaneseDate($date)
 	{
 		$date = str_replace('年', '-', $date);
@@ -51,6 +64,11 @@ class Common
 		return $date;
 	}
 
+	/**
+	 * Flushes output buffers
+	 *
+	 * @return void
+	 */
 	public static function FlushBuffers()
 	{
 		if (ob_get_level() > 0)
@@ -60,6 +78,11 @@ class Common
 		flush();
 	}
 
+	/**
+	 * Gets the current time with microseconds in Asia/Tokyo timezone
+	 *
+	 * @return string Formatted time string (Y-m-d H:i:s:u) or 'none' on failure
+	 */
 	public static function GetNowMicroTime()
 	{
 		$time = 'none';
@@ -76,6 +99,11 @@ class Common
 		return $time;
 	}
 
+	/**
+	 * Gets the current time with microseconds in Asia/Tokyo timezone
+	 *
+	 * @return string Formatted time string (Y-m-d H:i:s:u) or empty string on failure
+	 */
 	public static function GetNowTime()
 	{
 		$timezone = new DateTimeZone('Asia/Tokyo');
@@ -90,6 +118,14 @@ class Common
 		return $time;
 	}
 
+	/**
+	 * Validates a time string and optionally checks if it's within a time range
+	 *
+	 * @param string $time The time string to validate (HH:MM format)
+	 * @param string|null $beginTime Optional start time for range check (HH:MM format)
+	 * @param string|null $endTime Optional end time for range check (HH:MM format)
+	 * @return bool True if time is valid (and within range if specified), false otherwise
+	 */
 	public static function IsValidTime($time, $beginTime = null,
 		$endTime = null)
 	{
@@ -122,6 +158,11 @@ class Common
 		return $isTime;
 	}
 
+	/**
+	 * Configures PHP settings for debug mode
+	 *
+	 * @return void
+	 */
 	public static function SetDebugMode()
 	{
 		error_reporting(E_ALL);
