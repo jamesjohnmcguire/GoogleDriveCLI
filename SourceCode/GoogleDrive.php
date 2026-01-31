@@ -18,15 +18,15 @@ declare(strict_types=1);
 namespace DigitalZenWorks\GoogleDrive;
 
 include_once 'vendor/autoload.php';
-require_once "libraries/common.php";
-require_once "libraries/debug.php";
+require_once 'Log.php';
+require_once 'LogLevel.php';
 
 use DigitalZenWorks\GoogleApiAuthorization\Authorizer;
 use DigitalZenWorks\GoogleApiAuthorization\Mode;
 
 class GoogleDrive
 {
-	protected $debug = null;
+	protected ?object $log = null;
 
 	private $client = null;
 	private $coreSharedParentFolderId = null;
@@ -40,14 +40,13 @@ class GoogleDrive
 	/**
 	 * Constructor for GoogleDrive class
 	 *
-	 * @param mixed $debug Debug object instance
 	 * @param array $options Optional configuration options (showOnlyFolders, showOnlyRootLevel, showParent, showShared, serviceAccountFilePath)
 	 * @param string $authorizationType Authorization type (default: 'ServiceAccount')
 	 */
 	public function __construct(
-		mixed $debug, array $options = [], string $authorizationType = 'ServiceAccount')
+		array $options = [], string $authorizationType = 'ServiceAccount')
 	{
-		$this->debug = $debug;
+		$this->log = Log::GetLog('GoogleDrive');
 
 		foreach ($options as $key => $option)
 		{
@@ -78,7 +77,7 @@ class GoogleDrive
 	 */
 	public function About(): void
 	{
-		$this->debug->Show(\Debug::DEBUG, "About begin");
+		$this->log->debug('About begin');
 
 		if ($this->service === null)
 		{
@@ -188,14 +187,13 @@ class GoogleDrive
 		$files = $this->GetFiles(
 			$parentId, $this->showOnlyFolders, $this->showOnlyRootLevel);
 
-		$this->debug->Show(\Debug::DEBUG, "Listing files");
-		$this->debug->Show(\Debug::DEBUG, "parent id: $parentId");
+		$this->log->debug("Listing files");
+		$this->log->debug("parent id: $parentId");
 		echo "\r\n";
 
 		if ($this->showShared === true)
 		{
-			$this->debug->Show(
-				\Debug::DEBUG, "Showing files also shared with me");
+			$this->log->debug("Showing files also shared with me");
 			echo "  ";
 
 			if ($this->showParent == true)
@@ -209,7 +207,7 @@ class GoogleDrive
 		}
 		else
 		{
-			$this->debug->Show(\Debug::DEBUG, "Showing files only owned by me");
+			$this->log->debug("Showing files only owned by me");
 
 			if ($this->showParent == true)
 			{
@@ -279,7 +277,7 @@ class GoogleDrive
 	{
 		if (file_exists($file))
 		{
-			$this->debug->Show(\Debug::DEBUG, "Starting file upload of $file");
+			$this->log->debug("Starting file upload of $file");
 
 			$driveFile = new \Google_Service_Drive_DriveFile();
 			$driveFile->name = basename($file);
@@ -310,7 +308,7 @@ class GoogleDrive
 
 			if ($handle === false)
 			{
-				$this->debug->Show(\Debug::ERROR, "Failed to open file: $file");
+				$this->log->error("Failed to open file: $file");
 			}
 			else
 			{
@@ -321,7 +319,7 @@ class GoogleDrive
 				{
 					$uploadedAmount = $media->getProgress();
 					$bytes =  number_format($uploadedAmount);
-					$this->debug->Show(\Debug::DEBUG,
+					$this->log->debug(
 						"Uploaded file chunk: $index - $bytes bytes");
 
 					$chunk = self::GetFileChunk($handle, $chunkSizeBytes);
@@ -332,7 +330,7 @@ class GoogleDrive
 				}
 
 				fclose($handle);
-				$this->debug->Show(\Debug::DEBUG, "Upload complete");
+				$this->log->debug("Upload complete for file: $file");
 			}
 
 			// The final value of $status will be the data from the API
@@ -342,7 +340,7 @@ class GoogleDrive
 			if ($status !== false)
 			{
 				$result = true;
-				$this->debug->Show(\Debug::DEBUG, "Uploaded file success");
+				$this->log->debug("Uploaded file success: $file");
 			}
 		}
 	}

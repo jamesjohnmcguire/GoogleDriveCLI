@@ -22,14 +22,11 @@ declare(strict_types=1);
 
 namespace DigitalZenWorks\GoogleDrive;
 
-require_once "libraries/debug.php";
 require_once "GoogleDrive.php";
+require_once 'Log.php';
+require_once 'LogLevel.php';
 
 ini_set('memory_limit', '2048M');
-
-$debugLevel = \Debug::DEBUG;
-$logFile = __DIR__ . '/LogFiles/GoogleDrive.log';
-$debugger = new \Debug($debugLevel, $logFile);
 
 $command = null;
 $data = null;
@@ -69,7 +66,7 @@ foreach ($argv as $argument)
 	}
 }
 
-$googleDrive = new GoogleDrive($debugger, $options);
+$googleDrive = new GoogleDrive($options);
 
 echo "Command is: $command\r\n";
 echo "Data is: $data\r\n";
