@@ -135,5 +135,3 @@ class Common
 		ini_set('xdebug.var_display_max_data', -1);
 	}
 }
-
-?>
