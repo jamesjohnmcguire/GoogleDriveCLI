@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="Notarization Plugin Coding Standard">
+
+ 	<rule ref="./ruleset.default.xml"/>
+
+	<rule ref="PEAR">
+		<exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
+	</rule>
+
+	<rule ref="Universal">
+		<exclude name="Universal.Attributes.RequireAttributeParentheses.Missing"/>
+	</rule>
+
+</ruleset>
