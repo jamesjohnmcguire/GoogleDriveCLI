@@ -28,44 +28,74 @@ require_once 'LogLevel.php';
 
 ini_set('memory_limit', '2048M');
 
-$command = null;
-$data = null;
-$showParent = false;
-$showOnlyFolders = false;
-$showOnlyRootLevel = false;
-$options =
-[
-	'showOnlyFolders' => false,
-	'showOnlyRootLevel' => false,
-	'showParent' => false,
-	'showShared' => false
-];
-
-if (!empty($argv[1]))
+function ParseCommandLineArguments(array $arguments): array
 {
-    $command = $argv[1];
-}
+	$command = null;
+	$data = null;
+	$options =
+	[
+		'showOnlyFolders' => false,
+		'showOnlyRootLevel' => false,
+		'showParent' => false,
+		'showShared' => false
+	];
 
-if (!empty($argv[2]))
-{
-	$exists = array_key_exists($argv[2], $options);
-
-	if ($exists === false)
+	if (!empty($arguments[1]))
 	{
-		$data = $argv[2];
+		$command = $arguments[1];
 	}
-}
 
-foreach ($argv as $argument)
-{
-	$exists = array_key_exists($argument, $options);
-
-	if ($exists === true)
+	for ($index = 2; $index < count($arguments); $index++)
 	{
-		$options[$argument] = true;
+		if ($arguments[$index] !== '--credentials')
+		{
+			continue;
+		}
+
+		$credentialsPath = $arguments[$index + 1] ?? null;
+
+		if ($credentialsPath === null || $credentialsPath === '' ||
+			strncmp($credentialsPath, '--', 2) === 0)
+		{
+			fwrite(STDERR, "ERROR: --credentials requires a file path.\r\n");
+			exit(1);
+		}
+
+		if (!is_file($credentialsPath) || !is_readable($credentialsPath))
+		{
+			fwrite(STDERR, "ERROR: Credentials file is missing or unreadable: $credentialsPath\r\n");
+			exit(1);
+		}
+
+		$options['serviceAccountFilePath'] = $credentialsPath;
+		array_splice($arguments, $index, 2);
+		$index--;
 	}
+
+	if (!empty($arguments[2]))
+	{
+		$exists = array_key_exists($arguments[2], $options);
+
+		if ($exists === false)
+		{
+			$data = $arguments[2];
+		}
+	}
+
+	foreach ($arguments as $argument)
+	{
+		$exists = array_key_exists($argument, $options);
+
+		if ($exists === true)
+		{
+			$options[$argument] = true;
+		}
+	}
+
+	return [$command, $data, $options];
 }
 
+[$command, $data, $options] = ParseCommandLineArguments($argv);
 $googleDrive = new GoogleDrive($options);
 
 echo "Command is: $command\r\n";
@@ -95,6 +125,7 @@ else
 			echo "Examples\r\n";
 			echo "Command get <file id>\r\n";
 			echo "Command list\r\n";
+			echo "Command list --credentials <path>\r\n";
 			echo "Command list showParent showOnlyRootLevel showOnlyFolders showShared \r\n";
 			echo "Command deleteall\r\n";
 			echo "Command delete 1IcurHhUiafHbqw8qfw1UEGGLrGGFzDqH\r\n";
