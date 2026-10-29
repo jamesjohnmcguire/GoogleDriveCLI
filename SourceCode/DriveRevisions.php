@@ -52,6 +52,44 @@ final class DriveRevisions
 		return $revisions;
 	}
 
+	public function KeepRevisionForever(
+		string $fileId, string $revisionId): Revision
+	{
+		$fields = ['fields' => 'id,keepForever,mimeType'];
+		$current = $this->resource->get(
+			$fileId, $revisionId, $fields);
+
+		if (strpos(
+			(string)$current->getMimeType(),
+			'application/vnd.google-apps.') === 0)
+		{
+			throw new \InvalidArgumentException(
+				'Keep forever only applies to binary file revisions.');
+		}
+
+		if ($current->getKeepForever() === true)
+		{
+			return $current;
+		}
+
+		$update = new Revision();
+		$update->setKeepForever(true);
+		$this->resource->update(
+			$fileId, $revisionId, $update,
+			['fields' => 'id,keepForever']);
+
+		$confirmed = $this->resource->get(
+			$fileId, $revisionId, $fields);
+
+		if ($confirmed->getKeepForever() !== true)
+		{
+			throw new \RuntimeException(
+				'Drive did not confirm keepForever for this revision.');
+		}
+
+		return $confirmed;
+	}
+
 	public static function FormatRevision(Revision $revision): string
 	{
 		$mimeType = $revision->getMimeType();

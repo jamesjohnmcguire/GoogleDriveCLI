@@ -105,13 +105,25 @@ class GoogleDrive
 	 */
 	public function ListRevisions(string $fileId): array
 	{
+		return $this->GetRevisionService()->ListRevisions($fileId);
+	}
+
+	public function KeepRevisionForever(
+		string $fileId, string $revisionId):
+		\Google\Service\Drive\Revision
+	{
+		return $this->GetRevisionService()
+			->KeepRevisionForever($fileId, $revisionId);
+	}
+
+	private function GetRevisionService(): DriveRevisions
+	{
 		if ($this->service === null)
 		{
 			throw new \RuntimeException('Drive authorization failed.');
 		}
 
-		return (new DriveRevisions($this->service->revisions))
-			->ListRevisions($fileId);
+		return new DriveRevisions($this->service->revisions);
 	}
 
 	/**

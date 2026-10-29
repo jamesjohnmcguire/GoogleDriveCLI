@@ -61,6 +61,7 @@ else
 			echo "Command list\r\n";
 			echo "Command list --credentials <path>\r\n";
 			echo "Command revisions list <file-id> --credentials <path>\r\n";
+			echo "Command revisions keep <file-id> <revision-id> --credentials <path>\r\n";
 			echo "Command list showParent showOnlyRootLevel showOnlyFolders showShared \r\n";
 			echo "Command deleteall\r\n";
 			echo "Command delete 1IcurHhUiafHbqw8qfw1UEGGLrGGFzDqH\r\n";
@@ -69,25 +70,44 @@ else
 			$googleDrive->ListFiles($data);
 			break;
 		case 'revisions':
-			if (count($positionals) !== 2 ||
-				$positionals[0] !== 'list' || $positionals[1] === '')
+			$action = $positionals[0] ?? null;
+			$validList = $action === 'list' &&
+				count($positionals) === 2 &&
+				$positionals[1] !== '';
+			$validKeep = $action === 'keep' &&
+				count($positionals) === 3 &&
+				$positionals[1] !== '' &&
+				$positionals[2] !== '';
+
+			if (!$validList && !$validKeep)
 			{
 				fwrite(
 					STDERR,
-					"Usage: revisions list <file-id> " .
-					"[--credentials <path>]\r\n");
+					"Usage: revisions <list|keep> <file-id> " .
+					"[revision-id] [--credentials <path>]\r\n");
 				exit(2);
 			}
 
 			try
 			{
-				$revisions = $googleDrive->ListRevisions($positionals[1]);
-				echo "Revision ID\tModified\tSize (bytes)\t" .
-					"Keep forever\tMIME type\r\n";
-
-				foreach ($revisions as $revision)
+				if ($action === 'list')
 				{
-					echo DriveRevisions::FormatRevision($revision) .
+					$revisions = $googleDrive->ListRevisions(
+						$positionals[1]);
+					echo "Revision ID\tModified\tSize (bytes)\t" .
+						"Keep forever\tMIME type\r\n";
+
+					foreach ($revisions as $revision)
+					{
+						echo DriveRevisions::FormatRevision($revision) .
+							PHP_EOL;
+					}
+				}
+				else
+				{
+					$googleDrive->KeepRevisionForever(
+						$positionals[1], $positionals[2]);
+					echo "Revision $positionals[2] is kept forever." .
 						PHP_EOL;
 				}
 			}
