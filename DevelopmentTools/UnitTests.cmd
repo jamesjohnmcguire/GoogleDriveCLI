@@ -1,4 +1,5 @@
-CD %~dp0
-CD ..
-
-CALL vendor\bin\phpunit --config Tests\phpunit.xml %1 %2 %3 %4 %5
+@ECHO OFF
+SETLOCAL
+CD /D "%~dp0.." || EXIT /B 1
+CALL SourceCode\vendor\bin\phpunit.bat --configuration Tests\phpunit.xml %*
+EXIT /B %ERRORLEVEL%

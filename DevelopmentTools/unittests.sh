@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
-cd ..
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-vendor/bin/phpunit -c Tests/phpunit.xml "$@"
+SourceCode/vendor/bin/phpunit --configuration Tests/phpunit.xml "$@"

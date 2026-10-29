@@ -1,44 +1,21 @@
 @ECHO OFF
+SETLOCAL
 
-CD %~dp0
-CD ..
+CD /D "%~dp0.." || EXIT /B 1
 
 ECHO Checking Composer...
-CALL composer install --prefer-dist
-CALL composer validate --strict
-ECHO Outdated:
-CALL composer outdated --direct
+CALL composer install --prefer-dist || EXIT /B 1
+CALL composer validate --strict || EXIT /B 1
 
-ECHO .
-ECHO Checking code syntax...
-CALL vendor/bin/parallel-lint --exclude .git --exclude Support --exclude vendor .
+ECHO Checking PHP syntax...
+CALL SourceCode\vendor\bin\parallel-lint.bat --exclude SourceCode\vendor SourceCode Tests || EXIT /B 1
 
-ECHO .
-ECHO Code Analysis...
-CALL vendor\bin\phpstan.phar.bat analyse
+ECHO Running static analysis...
+CALL SourceCode\vendor\bin\phpstan.phar.bat analyse || EXIT /B 1
 
-ECHO .
-ECHO Checking Code Styles...
-CALL php vendor\bin\phpcs -sp --standard=ruleset.xml SourceCode
-CALL vendor\bin\phpcs.bat -sp --standard=ruleset.tests.xml Tests
+ECHO Checking code style...
+CALL SourceCode\vendor\bin\phpcs.bat --standard=ruleset.xml SourceCode || EXIT /B 1
+CALL SourceCode\vendor\bin\phpcs.bat --standard=ruleset.tests.xml Tests || EXIT /B 1
 
-ECHO Running Automated Tests
-CALL vendor\bin\phpunit.bat --config Tests\phpunit.xml
-
-IF "%1"=="release" GOTO deploy
-GOTO finish
-
-:deploy
-ECHO Deploying...
-if "%~2"=="" GOTO error
-
-IF EXIST digitalzenworks-apitest.zip DEL /Q digitalzenworks-apitest.zip
-zip -r digitalzenworks-apitest.zip . -x .git\* -x .vscode\* -x vendor\* -x ApiTest.code-workspace
-
-gh release create v%2 --notes %2 digitalzenworks-apitest.zip
-DEL /Q digitalzenworks-apitest.zip
-
-:error
-ECHO No Version Tag Supplied for Release
-
-:finish
+ECHO Running automated tests...
+CALL SourceCode\vendor\bin\phpunit.bat --configuration Tests\phpunit.xml || EXIT /B 1
