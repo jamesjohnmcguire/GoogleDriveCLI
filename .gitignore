@@ -1,3 +1,4 @@
 # PHP
 /SourceCode/LogFiles
 /SourceCode/vendor
+/Tests/.phpunit.result.cache
