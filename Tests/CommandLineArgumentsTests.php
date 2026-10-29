@@ -6,12 +6,14 @@ namespace DigitalZenWorks\GoogleDrive\Tests;
 
 require_once __DIR__ . '/../SourceCode/CommandLineArguments.php';
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use function DigitalZenWorks\GoogleDrive\ParseCommandLineArguments;
 
-final class CommandLineArgumentsTest extends TestCase
+final class CommandLineArgumentsTests extends TestCase
 {
-	public function testReturnsMultiplePositionalArguments(): void
+	#[Test]
+	public function returnsMultiplePositionalArguments(): void
 	{
 		[$command, $data, $options, $positionals] =
 			ParseCommandLineArguments(
@@ -24,7 +26,8 @@ final class CommandLineArgumentsTest extends TestCase
 		self::assertFalse($options['showShared']);
 	}
 
-	public function testSeparatesFlagsAndCredentialsFromPositionals(): void
+	#[Test]
+	public function separatesFlagsAndCredentialsFromPositionals(): void
 	{
 		[$command, $data, $options, $positionals] =
 			ParseCommandLineArguments(

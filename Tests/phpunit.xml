@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.5/phpunit.xsd">
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../SourceCode/vendor/phpunit/phpunit/phpunit.xsd"
+    bootstrap="../SourceCode/vendor/autoload.php"
+    colors="true"
+    displayDetailsOnPhpunitDeprecations="true"
+    displayDetailsOnTestsThatTriggerDeprecations="true"
+    displayDetailsOnTestsThatTriggerErrors="true"
+    displayDetailsOnTestsThatTriggerNotices="true"
+    displayDetailsOnTestsThatTriggerWarnings="true"
+    failOnDeprecation="true"
+    failOnRisky="true"
+    failOnWarning="true"
+    testdox="true"
+>
+    <php>
+        <ini name="display_errors" value="true"/>
+    </php>
+    <source>
+        <include>
+            <directory>../SourceCode</directory>
+        </include>
+        <exclude>
+            <directory>../SourceCode/stubs</directory>
+            <directory>../SourceCode/vendor</directory>
+        </exclude>
+    </source>
     <testsuites>
         <testsuite name="CLI">
-            <directory suffix="Test.php">.</directory>
+            <directory suffix="Tests.php">.</directory>
         </testsuite>
     </testsuites>
 </phpunit>

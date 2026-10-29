@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace DigitalZenWorks\GoogleDrive\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-final class CliCredentialsTest extends TestCase
+final class CliCredentialsTests extends TestCase
 {
-	public function testMissingCredentialsPathFailsBeforeConnecting(): void
+	#[Test]
+	public function missingCredentialsPathFailsBeforeConnecting(): void
 	{
 		[$exitCode, $error] = $this->runCli(
 			['list', '--credentials']);
@@ -18,7 +20,8 @@ final class CliCredentialsTest extends TestCase
 			'--credentials requires a file path', $error);
 	}
 
-	public function testMissingCredentialsFileFailsBeforeConnecting(): void
+	#[Test]
+	public function missingCredentialsFileFailsBeforeConnecting(): void
 	{
 		$missingPath = __DIR__ . '/missing-service-account.json';
 		[$exitCode, $error] = $this->runCli(
