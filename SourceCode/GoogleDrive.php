@@ -20,6 +20,7 @@ namespace DigitalZenWorks\GoogleDrive;
 include_once 'vendor/autoload.php';
 require_once 'Log.php';
 require_once 'LogLevel.php';
+require_once __DIR__ . '/DriveRevisions.php';
 
 use DigitalZenWorks\GoogleApiAuthorization\Authorizer;
 use DigitalZenWorks\GoogleApiAuthorization\Mode;
@@ -97,6 +98,20 @@ class GoogleDrive
 
 			print_r($response->storageQuota);
 		}
+	}
+
+	/**
+	 * @return \Google\Service\Drive\Revision[]
+	 */
+	public function ListRevisions(string $fileId): array
+	{
+		if ($this->service === null)
+		{
+			throw new \RuntimeException('Drive authorization failed.');
+		}
+
+		return (new DriveRevisions($this->service->revisions))
+			->ListRevisions($fileId);
 	}
 
 	/**

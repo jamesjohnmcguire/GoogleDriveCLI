@@ -1,0 +1,72 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DigitalZenWorks\GoogleDrive;
+
+use Google\Service\Drive\Resource\Revisions;
+use Google\Service\Drive\Revision;
+
+final class DriveRevisions
+{
+	private Revisions $resource;
+
+	public function __construct(Revisions $resource)
+	{
+		$this->resource = $resource;
+	}
+
+	/**
+	 * @return Revision[]
+	 */
+	public function ListRevisions(string $fileId): array
+	{
+		$revisions = [];
+		$pageToken = null;
+
+		do
+		{
+			$options = [
+				'fields' =>
+					'nextPageToken,revisions(id,keepForever,mimeType,' .
+					'modifiedTime,size)',
+				'pageSize' => 1000
+			];
+
+			if ($pageToken !== null)
+			{
+				$options['pageToken'] = $pageToken;
+			}
+
+			$page = $this->resource->listRevisions($fileId, $options);
+
+			foreach ($page->getRevisions() ?? [] as $revision)
+			{
+				$revisions[] = $revision;
+			}
+
+			$pageToken = $page->getNextPageToken();
+		}
+		while ($pageToken !== null && $pageToken !== '');
+
+		return $revisions;
+	}
+
+	public static function FormatRevision(Revision $revision): string
+	{
+		$mimeType = $revision->getMimeType();
+		$isWorkspaceFile = strpos(
+			(string)$mimeType, 'application/vnd.google-apps.') === 0;
+		$kept = $isWorkspaceFile
+			? 'n/a'
+			: ($revision->getKeepForever() === true ? 'yes' : 'no');
+
+		return implode("\t", [
+			$revision->getId(),
+			$revision->getModifiedTime() ?? '-',
+			$revision->getSize() ?? '-',
+			$kept,
+			$mimeType ?? '-'
+		]);
+	}
+}

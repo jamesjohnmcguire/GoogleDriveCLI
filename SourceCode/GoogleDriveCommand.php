@@ -60,12 +60,45 @@ else
 			echo "Command get <file id>\r\n";
 			echo "Command list\r\n";
 			echo "Command list --credentials <path>\r\n";
+			echo "Command revisions list <file-id> --credentials <path>\r\n";
 			echo "Command list showParent showOnlyRootLevel showOnlyFolders showShared \r\n";
 			echo "Command deleteall\r\n";
 			echo "Command delete 1IcurHhUiafHbqw8qfw1UEGGLrGGFzDqH\r\n";
 			break;
 		case 'list':
 			$googleDrive->ListFiles($data);
+			break;
+		case 'revisions':
+			if (count($positionals) !== 2 ||
+				$positionals[0] !== 'list' || $positionals[1] === '')
+			{
+				fwrite(
+					STDERR,
+					"Usage: revisions list <file-id> " .
+					"[--credentials <path>]\r\n");
+				exit(2);
+			}
+
+			try
+			{
+				$revisions = $googleDrive->ListRevisions($positionals[1]);
+				echo "Revision ID\tModified\tSize (bytes)\t" .
+					"Keep forever\tMIME type\r\n";
+
+				foreach ($revisions as $revision)
+				{
+					echo DriveRevisions::FormatRevision($revision) .
+						PHP_EOL;
+				}
+			}
+			catch (\Throwable $exception)
+			{
+				fwrite(
+					STDERR,
+					"ERROR: " . $exception->getMessage() . PHP_EOL);
+				exit(1);
+			}
+
 			break;
 		case 'upload':
 			$googleDrive->UploadFile($data);
