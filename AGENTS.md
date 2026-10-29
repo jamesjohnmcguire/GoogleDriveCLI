@@ -22,7 +22,7 @@ Follow `.editorconfig`: UTF-8, final newline, no trailing whitespace, and tabs w
 
 ## Testing Guidelines
 
-PHPUnit uses `Tests/phpunit.xml`. Name test files `*Test.php` and keep tests independent of a live Drive account where possible. Run them with `DevelopmentTools/UnitTests.cmd` or `bash DevelopmentTools/unittests.sh`. No coverage threshold is configured.
+PHPUnit uses `Tests/phpunit.xml`. Name test files `*Test.php` and keep tests independent of a live Drive account where possible. Run them with `DevelopmentTools/unitTests.cmd` or `bash DevelopmentTools/unitTests.sh`. No coverage threshold is configured.
 
 ## Commit & Pull Request Guidelines
 
