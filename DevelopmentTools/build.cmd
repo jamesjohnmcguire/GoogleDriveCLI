@@ -3,9 +3,7 @@ SETLOCAL
 
 CD /D "%~dp0.." || EXIT /B 1
 
-ECHO Checking Composer...
-CALL composer install --prefer-dist || EXIT /B 1
-CALL composer validate --strict || EXIT /B 1
+CALL composerStatus.cmd || EXIT /B 1
 
 ECHO Checking PHP syntax...
 CALL SourceCode\vendor\bin\parallel-lint.bat --exclude SourceCode\vendor SourceCode Tests || EXIT /B 1

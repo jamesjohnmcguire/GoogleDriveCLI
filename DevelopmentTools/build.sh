@@ -3,9 +3,7 @@
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-echo "Checking Composer..."
-composer install --prefer-dist
-composer validate --strict
+composerStatus.sh
 
 echo "Checking PHP syntax..."
 SourceCode/vendor/bin/parallel-lint --exclude SourceCode/vendor SourceCode Tests
