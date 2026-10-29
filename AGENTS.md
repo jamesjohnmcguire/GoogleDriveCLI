@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-`SourceCode/GoogleDriveCommand.php` is the CLI entry point; `GoogleDrive.php` implements Drive operations, and `Log.php` and `LogLevel.php` provide logging. `SourceCode/Command.cmd` is the Windows launcher. `DevelopmentTools/` contains build and test scripts, `Support/` contains development notes, and `SourceCode/stubs/` supports PHPStan. Composer installs dependencies into the ignored `SourceCode/vendor/` directory. There is currently no top-level `Tests/` directory; add focused tests there when introducing testable behavior.
+`SourceCode/GoogleDriveCommand.php` is the CLI entry point; `GoogleDrive.php` implements Drive operations, and `Log.php` and `LogLevel.php` provide logging. `SourceCode/Command.cmd` is the Windows launcher. `DevelopmentTools/` contains build and test scripts, `Support/` contains development notes, and `SourceCode/stubs/` supports PHPStan. Composer installs dependencies into the ignored `SourceCode/vendor/` directory. `Tests/` contains PHPUnit configuration and offline CLI tests.
 
 ## Build, Test, and Development Commands
 
@@ -14,7 +14,7 @@ Run commands from the repository root:
 - `SourceCode/vendor/bin/phpcs -sp --standard=ruleset.xml SourceCode` checks production code style.
 - `php SourceCode/GoogleDriveCommand.php list` runs the CLI against the configured Google Drive account; use valid service account credentials.
 
-`DevelopmentTools/build.cmd` and `build.sh` combine dependency, lint, analysis, style, and PHPUnit checks, but some commands still point to root-level `vendor/` and the absent `Tests/` tree. Check those paths before relying on the full scripts.
+`DevelopmentTools/build.cmd` and `build.sh` run dependency, syntax, analysis, style, and PHPUnit checks.
 
 ## Coding Style & Naming Conventions
 
@@ -22,7 +22,7 @@ Follow `.editorconfig`: UTF-8, final newline, no trailing whitespace, and tabs w
 
 ## Testing Guidelines
 
-PHPUnit is declared in `composer.json`, and the scripts expect `Tests/phpunit.xml`. When adding tests, create that configuration and name test files `*Test.php`; keep tests independent of a live Drive account where possible. Run them with `SourceCode/vendor/bin/phpunit -c Tests/phpunit.xml`. No coverage threshold is configured.
+PHPUnit uses `Tests/phpunit.xml`. Name test files `*Test.php` and keep tests independent of a live Drive account where possible. Run them with `DevelopmentTools/UnitTests.cmd` or `bash DevelopmentTools/unittests.sh`. No coverage threshold is configured.
 
 ## Commit & Pull Request Guidelines
 
