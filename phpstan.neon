@@ -5,8 +5,8 @@ parameters:
 	bootstrapFiles:
 		- SourceCode/stubs/phpstan-bootstrap.php
 	excludePaths:
-		analyse:
-			- '**/vendor/**'
+		analyseAndScan:
+			- SourceCode/vendor
 	level: 7
 	paths:
 		- SourceCode
