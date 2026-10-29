@@ -14,7 +14,7 @@ Run commands from the repository root:
 - `SourceCode/vendor/bin/phpcs -sp --standard=ruleset.xml SourceCode` checks production code style.
 - `php SourceCode/GoogleDriveCommand.php list` runs the CLI against the configured Google Drive account; use valid service account credentials.
 
-`DevelopmentTools/build.cmd` and `build.sh` call `composerStatus` from PATH for dependency installation, validation, outdated-package checks, and audit, then run syntax, analysis, style, and PHPUnit checks.
+`DevelopmentTools/build.cmd` and `build.sh` call `composerStatus` from PATH, check PHP syntax, and call the unit test scripts. Pass `--quality` to run PHPStan and PHPCS between syntax checking and tests.
 
 ## Coding Style & Naming Conventions
 

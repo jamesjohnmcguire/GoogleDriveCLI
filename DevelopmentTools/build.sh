@@ -8,12 +8,14 @@ composerStatus.sh
 echo "Checking PHP syntax..."
 SourceCode/vendor/bin/parallel-lint --exclude SourceCode/vendor SourceCode Tests
 
-echo "Running static analysis..."
-SourceCode/vendor/bin/phpstan.phar analyse
+if [[ "${1:-}" == "--quality" ]]; then
+	echo "Running static analysis..."
+	SourceCode/vendor/bin/phpstan.phar analyse
 
-echo "Checking code style..."
-SourceCode/vendor/bin/phpcs --standard=ruleset.xml SourceCode
-SourceCode/vendor/bin/phpcs --standard=ruleset.tests.xml Tests
+	echo "Checking code style..."
+	SourceCode/vendor/bin/phpcs --standard=ruleset.xml SourceCode
+	SourceCode/vendor/bin/phpcs --standard=ruleset.tests.xml Tests
+fi
 
 echo "Running automated tests..."
-SourceCode/vendor/bin/phpunit --configuration Tests/phpunit.xml
+bash DevelopmentTools/unitTests.sh
